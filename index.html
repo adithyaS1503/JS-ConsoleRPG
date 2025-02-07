@@ -3,30 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
+    <title>Turn-Based RPG</title>
     <script src="scripts/main.js" defer></script>
     <!-- <script src="scripts/testing.js" defer></script> -->
 </head>
-<!-- 
-    Need to figure out the best way to pass player stats to the JS file.
-    Decide whether or not to implement specials and potions/elixirs
-    How many enemy rounds? FH1,2>Grdsmn>Exec>ScrltKng
-    If I implement all these enemies and rounds, I need to give the player potions/elixirs and upgrades between rounds
--->
 <body>
     <div class="mainMenu">
-        <h1 id="titleCard">Hello</h1>
+        <h1 id="titleCard">A Knight's Honor</h1>
         <h3 id="subTitle">Inspired by classic turn-based RPGs</h3>
+        <div class="story-card">
+            <p>
+
+            </p>
+        </div>
         <div class="instructions-card">
             <h3 class="rules" id="instText">Instructions:</h3>
             <ol class="rules">
-                <li>You choose between 3 character: Knight, Ranger and Wizard. Each have independent stats and moves.</li>
-                <li>No one character is better than the other, they have their own pro's and con's.</li>
-                <li>There are three endings: Good-End, Bad-End and Worst-End.</li>
+                <li>You always have the first action.</li>
+                <li>Your character has 20 Health and 10 Stamina. Your Stamina regens to 10 each round.</li>
+                <li>If your Stamina falls below 0-3 in a round, you take additional damage.</li>
+                <li>You can choose between: Attack, Heavy-Attack, Block or to Forego a round.</li>
+                <li>Attacks do 0-10 damage and Heavy-Attacks do 0-15 damage. Yes, you can roll a 0 and miss.</li>
+                <li>Your block negated 5 damage. But, being defensive constantly has it's own drawbacks.</li>
+                <li>Reach the Forlorn King before round 30 or risk dooming the World.</li>
             </ol>
         </div>
         <button id="button">Continue</button>
-
     </div>
 </body>
 </html>
