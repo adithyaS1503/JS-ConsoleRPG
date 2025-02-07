@@ -15,6 +15,8 @@ Some console.log() stuff will be made into alerts
 
 // HTML stuff
 roundCounter = document.getElementById('roundCounter');
+areaCounter = document.getElementById('areaCounter');
+
 
 let isBlock = 0;
 let userInput = 0;
@@ -315,7 +317,8 @@ const playerDat = {
         attackValue = userInput * modifier;
         console.log("Your output:",attackValue);
         // this.playerAttack(attackValue);
-        this.chooseTarget(attackValue);
+        // this.chooseTarget(attackValue);
+        this.targetselector(attackValue);
     },
     playerAttack: function(attackValue){
         // Actual damage happens here:
@@ -376,6 +379,31 @@ const playerDat = {
         } else{
             console.log("Can't choose target");
         }
+    },
+    // This is working for hound 1 and 2 choosing
+    targetselector: function(attackValue){
+        // attacking only hound 1 or 2
+        if((feralHoundHealth != 0) && (isHound2Active == 0)){
+            this.playerAttack(attackValue);
+        } else if((feralHoundHealth == 0) && (isHound2Active == 1)){
+            this.playerAttackHound2(attackValue);
+        } 
+        
+        // multi-enemy
+        if(OPPONENTS_QUEUE > 1){
+            // choosing bw hound 1 and 2
+            if((feralHoundHealth != 0) && (isHound2Active == 1)){
+                target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2\n`));
+                if(target == 1){
+                    this.playerAttack(attackValue);
+                } else if(target ==2 ){
+                    this.playerAttackHound2(attackValue);
+                } else{
+                    this.playerAttackGuard(attackValue);
+                }   
+            }
+        }
+
     }
 };
 
@@ -492,5 +520,9 @@ while(health > 0){
 
     isBlock = 0;
     ROUNDS++;
-    // roundCounter.textContent = ROUNDS;
+
+    if(ROUNDS >= 50){
+        console.log("\n===\nYou have failed in your mission, the ritual is complete and the world is shrouded in an all-consuming fog.\n===\n");
+        break;
+    }
 }
