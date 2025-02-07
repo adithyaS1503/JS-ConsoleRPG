@@ -346,6 +346,7 @@ const playerDat = {
         if ((guardsManhealth - attackValue) <= 0){
             guardsManhealth= 0;
             isgmActive = -1;
+            console.log("GuardsMan Slain");
         } else{
             guardsManhealth -= attackValue;
             console.log(`GuardsMan health is now: ${guardsManhealth}`);
@@ -482,7 +483,7 @@ while(health > 0){
                 enemyData.guardsMan();
                 console.log(`GuardsMan stats:\nHealth: ${guardsManhealth}`);
             } else{
-                console.log("GuardsMan Slain");
+                // console.log("GuardsMan Slain");
                 isgmActive = -1;
                 OPPONENTS_QUEUE--;
                 // break;
