@@ -351,35 +351,6 @@ const playerDat = {
             console.log(`GuardsMan health is now: ${guardsManhealth}`);
         }
     },
-
-    // This whole thing needs to be redone.
-    chooseTarget: function(attackValue){
-        if(feralHoundHealth != 0){   
-            this.playerAttack(attackValue);
-        } else if(((OPPONENTS_QUEUE == 2) || (OPPONENTS_QUEUE == 1))&& (isHound2Active == 1)){
-            if((feralHoundHealth == 0) && (feralHoundHealth2!=0)){
-                this.playerAttackHound2(attackValue); 
-            } else{
-                target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2`));
-                if(target == 1){
-                    this.playerAttack(attackValue);
-                } else{
-                    this.playerAttackHound2(attackValue);
-                }
-            }
-        } else if(((OPPONENTS_QUEUE == 2) || (OPPONENTS_QUEUE == 1)) && (isgmActive == 1)){
-            target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2\n\t3. GuardsMan`));
-            if(target == 1){
-                this.playerAttack(attackValue);
-            } else if(target ==2 ){
-                this.playerAttackHound2(attackValue);
-            } else{
-                this.playerAttackGuard(attackValue);
-            }
-        } else{
-            console.log("Can't choose target");
-        }
-    },
     // I fucking hate this so much. I should've just ran this whole thing is one massive if-else if 
     /*
     Remember: 
@@ -404,9 +375,18 @@ const playerDat = {
                     this.playerAttackHound2(attackValue);
                 }
             }
-        } else if(SUMMON_GUARD >= 5){
+        } else if((SUMMON_GUARD >= 5) && (areaCleared == 0)){
             if(isgmActive == 1){
-                if((feralHoundHealth != 0) && (isHound2Active != 1)){
+                if(((feralHoundHealth != 0) && (isHound2Active == 1))){
+                    target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2\n\t3. GuardsMan\n`));
+                    if(target == 1){
+                        this.playerAttack(attackValue);
+                    } else if(target ==2 ){
+                        this.playerAttackHound2(attackValue);
+                    } else{
+                        this.playerAttackGuard(attackValue);
+                    }
+                }else if((feralHoundHealth != 0) && (isHound2Active != 1)){
                     target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. GuardsMan\n`));
                     if(target == 1){
                         this.playerAttack(attackValue);
