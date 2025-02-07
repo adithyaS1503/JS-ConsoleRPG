@@ -357,7 +357,7 @@ const playerDat = {
     Remember: 
         Area == 0: Hounds and Guardsman
         Area == 1: Exec
-        Area == 2: Boss
+        Area == 2: Boss Forlorn King
     */
     targetselector: function(attackValue){
         if((SUMMON_GUARD<5) && (areaCleared == 0)){
