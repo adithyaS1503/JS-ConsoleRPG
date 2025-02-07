@@ -491,11 +491,13 @@ while(health > 0){
         } 
     }
 
-    if((guardsManhealth == 0) && (feralHoundHealth2 == 0)){
+    if(((feralHoundHealth == 0) && (feralHoundHealth2 == 0)) && (SUMMON_GUARD < 5)){
         areaCleared++;
-    } else if((feralHoundHealth2 == 0) && (isgmActive == 0)){
-        areaCleared++;
-    } 
+    } else if(SUMMON_GUARD >= 5){
+        if(((feralHoundHealth == 0) && (feralHoundHealth2 == 0)) && (guardsManhealth == 0)){
+            areaCleared++;
+        }
+    }
 
     // clear out the current bg and sprites using DOM manipulation
     // if(areaCleared == 1){
