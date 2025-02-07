@@ -21,7 +21,7 @@ let userInput = 0;
 
 // Have to put health and stamina values here otherwise they reset
 //Player:
-let health = 200;
+let health = 20;
 let stamina = 10; 
 
 //Enemies:
@@ -322,7 +322,7 @@ const playerDat = {
         if ((feralHoundHealth - attackValue) <= 0){
             feralHoundHealth = 0;
             isHound1Active = 0;
-            // console.log(`Feral Hound has died.`);
+            console.log("Feral Hound Slain!");
         } else{
             feralHoundHealth -= attackValue;
             console.log(`Feral Hound health is now: ${feralHoundHealth}`);
@@ -333,6 +333,7 @@ const playerDat = {
         if ((feralHoundHealth2 - attackValue) <= 0){
             feralHoundHealth2= 0;
             isHound2Active = -1;
+            console.log("Feral Hound 2 Slain!");
         } else{
             feralHoundHealth2 -= attackValue;
             console.log(`Feral Hound 2 health is now: ${feralHoundHealth2}`);
@@ -347,7 +348,8 @@ const playerDat = {
             console.log(`GuardsMan health is now: ${guardsManhealth}`);
         }
     },
-    // Need to consider wheter active and health. Change it to just health?
+
+    // This whole thing needs to be redone.
     chooseTarget: function(attackValue){
         if(feralHoundHealth != 0){   
             this.playerAttack(attackValue);
@@ -371,10 +373,9 @@ const playerDat = {
             } else{
                 this.playerAttackGuard(attackValue);
             }
-        } 
-        // else{
-        //     console.log("Can't choose target");
-        // }
+        } else{
+            console.log("Can't choose target");
+        }
     }
 };
 
@@ -417,7 +418,7 @@ while(health > 0){
         enemyData.hound1(); 
         console.log(`Feral Hound stats:\nHealth: ${feralHoundHealth}\nHowls: ${SUMMON_GUARD}`);
     } else{
-        console.log("Feral Hound Slain");
+        // console.log("Feral Hound Slain");
         feralHoundHealth = 0;
         if(((isHound2Active)==0) && (feralHoundHealth2 != 0)){
             ROUNDS = 3;
@@ -435,7 +436,7 @@ while(health > 0){
                 enemyData.hound2();
                 console.log(`Feral Hound 2 stats:\nHealth: ${feralHoundHealth2}\nTotal Howls: ${SUMMON_GUARD}`);
             } else{
-                console.log("Feral Hound 2 Slain");
+                // console.log("Feral Hound 2 Slain");
                 isHound2Active = -1;
                 OPPONENTS_QUEUE--;
                 // break;
@@ -451,7 +452,7 @@ while(health > 0){
             console.log("The GuardsMan has joined the battle!");
         } else{
             if(guardsManhealth > 0){
-                enemyData.guardAttack();
+                enemyData.guardsMan();
                 console.log(`GuardsMan stats:\nHealth: ${guardsManhealth}`);
             } else{
                 console.log("GuardsMan Slain");
