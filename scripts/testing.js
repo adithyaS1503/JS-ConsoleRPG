@@ -380,28 +380,23 @@ const playerDat = {
             console.log("Can't choose target");
         }
     },
-    // This is working for hound 1 and 2 choosing
+    // I fucking hate this so much. I should've just ran this whole thing is one massive if-else if 
+    /*
+    Remember: 
+        Area == 0: Hounds and Guardsman
+        Area == 1: Exec
+        Area == 2: Boss
+    */
     targetselector: function(attackValue){
-        // attacking only hound 1 or 2
-        if(SUMMON_GUARD<5){
+        if((SUMMON_GUARD<5) && (areaCleared == 0)){
             if((feralHoundHealth != 0) && (isHound2Active == 0)){
+                // only Hound 1
                 this.playerAttack(attackValue);
             } else if((feralHoundHealth == 0) && (isHound2Active == 1)){
+                // only Hound 2
                 this.playerAttackHound2(attackValue);
-            } 
-        }
-        
-        // only guard
-        if(SUMMON_GUARD >= 5){
-            if(((feralHoundHealth == 0) && (feralHoundHealth2 == 0)) && (isgmActive != 0)){
-                this.playerAttackGuard(attackValue);
-            }
-        }
-
-        // multi-enemy
-        if(OPPONENTS_QUEUE > 1){
-            // choosing bw hound 1 and 2
-            if((feralHoundHealth != 0) && (isHound2Active == 1)){
+            } else if((feralHoundHealth != 0) && (isHound2Active == 1)){
+                // Choose bw Hound 1 and 2
                 target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2\n`));
                 if(target == 1){
                     this.playerAttack(attackValue);
@@ -409,22 +404,8 @@ const playerDat = {
                     this.playerAttackHound2(attackValue);
                 }
             }
-            
-            // 2 hounds and guard
-            if(((feralHoundHealth != 0) && (isHound2Active == 1)) && (isgmActive == 1)){
-                target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. Feral Hound 2\n\t3. GuardsMan\n`));
-                if(target == 1){
-                    this.playerAttack(attackValue);
-                } else if(target ==2 ){
-                    this.playerAttackHound2(attackValue);
-                } else{
-                    this.playerAttackGuard(attackValue);
-                }   
-            }
-
-            // 1 Hound and Guard
+        } else if(SUMMON_GUARD >= 5){
             if(isgmActive == 1){
-                // Hound 1 alive, hound 2 dead
                 if((feralHoundHealth != 0) && (isHound2Active != 1)){
                     target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 1\n\t2. GuardsMan\n`));
                     if(target == 1){
@@ -432,9 +413,7 @@ const playerDat = {
                     } else if(target ==2 ){
                         this.playerAttackGuard(attackValue);
                     } 
-                }
-                // Hound 2 alive, 1 dead
-                if((isHound2Active == 1) && (feralHoundHealth == 0)){
+                }else if((isHound2Active == 1) && (feralHoundHealth == 0)){
                     target = parseInt(prompt(`Choose creature to attack:\n\t1. Feral Hound 2\n\t2. GuardsMan\n`));
                     if(target == 1){
                         this.playerAttackHound2(attackValue);
@@ -444,7 +423,6 @@ const playerDat = {
                 }
             }
         }
-
     }
 };
 
