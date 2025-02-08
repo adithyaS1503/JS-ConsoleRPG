@@ -1,7 +1,5 @@
 /*
 To do: 
-loading enemies into an array. If I can't do that, I'll need to just use if-else conditions.
-choosing between mulitple enemies when there's more than 1.
 transitioning backgrounds, all that stuff
 change block to negating 3 stamina and health damage
 add notification to say 'I missed...' if attackRoll == 0
@@ -316,6 +314,9 @@ const playerDat = {
         console.log("Your modifier:",modifier);
         attackValue = userInput * modifier;
         console.log("Your output:",attackValue);
+        if(attackValue == 0){
+            console.log("I missed...");
+        }
         // this.playerAttack(attackValue);
         // this.chooseTarget(attackValue);
         this.targetselector(attackValue);
