@@ -1,0 +1,15 @@
+buffs after clearing areas: 
+
+Area = 0
+if you killed only the hounds, you receive: Hound's Fortitude - +5 health and stamina
+if you killed both hounds and guard, Hound's Fortitude + New Weapon: Widow Maker
+
+Area = 1
++5 health and stamina and new weapon: Executioner Great Hammer
+
+
+Weapons: 
+
+Default weapon: Straight sword: 10, 15
+widow Maker: 10, 15 causes Bleed: drain 1-5 health per round based on roll. 
+Executioner Great Hammer: 15/20 but, is cursed. Drain 1-3 health per round.

@@ -2,7 +2,8 @@
 To do: 
 transitioning backgrounds, all that stuff
 change block to negating 3 stamina and health damage
-add notification to say 'I missed...' if attackRoll == 0
+remove the mechanic of OPPONENT_QUEUE. --> It just makes it more annoying and I'll do the checks using health and isActive status.
+
 
 all exec attacks deal health + stamina damage, if stamina falls below 
 
@@ -39,6 +40,7 @@ let isHound1Active = 1; //always 1, first enemy
 let isHound2Active = 0;
 let isgmActive = 0;
 let isExecBlocking = 0;
+let isExecActive = 0;
 
 let areaCleared = 0; // 1 - defeated hounds and/or guard, 2 - defeated executioner.
 
@@ -317,8 +319,10 @@ const playerDat = {
         if(attackValue == 0){
             console.log("I missed...");
         }
-        // this.playerAttack(attackValue);
-        // this.chooseTarget(attackValue);
+        // Buffs after clearing hounds and/or guard
+        if(areaCleared == 1){
+            attackValue += 3;
+        }
         this.targetselector(attackValue);
     },
     playerAttack: function(attackValue){
@@ -351,6 +355,16 @@ const playerDat = {
         } else{
             guardsManhealth -= attackValue;
             console.log(`GuardsMan health is now: ${guardsManhealth}`);
+        }
+    },
+    playerAttackExec: function(attackValue){
+        if ((executionerHealth - attackValue) <= 0){
+            executionerHealth = 0;
+            isExecActive = -1;
+            console.log("Executioner Slain!");
+        } else{
+            executionerHealth -= attackValue;
+            console.log(`Executioner health is now: ${executionerHealth}`);
         }
     },
     // I fucking hate this so much. I should've just ran this whole thing is one massive if-else if 
@@ -405,6 +419,9 @@ const playerDat = {
                 }
             }
         }
+        if(areaCleared == 1){
+            this.playerAttackExec(attackValue);
+        }
     }
 };
 
@@ -452,6 +469,7 @@ while(health > 0){
         if(((isHound2Active)==0) && (feralHoundHealth2 != 0)){
             ROUNDS = 3;
         }
+        OPPONENTS_QUEUE--;
         // break;
     }
 
@@ -501,9 +519,17 @@ while(health > 0){
     }
 
     // clear out the current bg and sprites using DOM manipulation
-    // if(areaCleared == 1){
-       
-    // }
+    if(areaCleared == 1){
+       if(isExecActive == 0){
+        isExecActive++;
+        console.log("\nA Terrifying Presence Approaches...\nThe Executioner has joined the battle!");
+       }
+       if((executionerHealth != 0) && (isExecActive == 1)){
+        enemyData.executioner();
+       }else if((executionerHealth == 0)){
+        isExecActive = -1;
+       }
+    }
 
     if(ROUNDS >= 50){
         alert("The Forlorn King has succeeded in his ritual, all hope is lost.");
