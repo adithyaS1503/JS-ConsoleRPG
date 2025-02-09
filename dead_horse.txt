@@ -1,0 +1,4 @@
+This project is my dead horse. I started it with the intention of learning and getting comfortable with JS and I think I've reached that point. 
+
+I'm not going to develop anything past the Guard encounter ie area 0. All the assets are here, there're guides to the mechanics and story, anyone 
+can take this and expand it, that's the beauty of open-source after all.

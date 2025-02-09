@@ -520,15 +520,16 @@ while(health > 0){
 
     // clear out the current bg and sprites using DOM manipulation
     if(areaCleared == 1){
-       if(isExecActive == 0){
-        isExecActive++;
-        console.log("\nA Terrifying Presence Approaches...\nThe Executioner has joined the battle!");
-       }
-       if((executionerHealth != 0) && (isExecActive == 1)){
-        enemyData.executioner();
-       }else if((executionerHealth == 0)){
-        isExecActive = -1;
-       }
+        console.log("\n\nThank you for playing, I've decided to end development here. Please take the files and use them however.\n\n")
+    //    if(isExecActive == 0){
+    //     isExecActive++;
+    //     console.log("\nA Terrifying Presence Approaches...\nThe Executioner has joined the battle!");
+    //    }
+    //    if((executionerHealth != 0) && (isExecActive == 1)){
+    //     enemyData.executioner();
+    //    }else if((executionerHealth == 0)){
+    //     isExecActive = -1;
+    //    }
     }
 
     if(ROUNDS >= 50){
